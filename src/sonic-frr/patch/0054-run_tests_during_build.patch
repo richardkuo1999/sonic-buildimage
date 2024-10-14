@@ -1,0 +1,19 @@
+diff --git a/debian/rules b/debian/rules
+index 43e5d7e61..b8b19481f 100755
+--- a/debian/rules
++++ b/debian/rules
+@@ -110,9 +110,13 @@ override_dh_makeshlibs:
+ override_dh_missing:
+ 	dh_missing --fail-missing
+ 
+-ifneq ($(filter nocheck,$(DEB_BUILD_PROFILES) $(DEB_BUILD_OPTIONS)),)
+ override_dh_auto_test:
++ifneq (,$(filter nocheck,$(DEB_BUILD_PROFILES) $(DEB_BUILD_OPTIONS)))
++	@echo "Skipping tests due to nocheck option"
+ 	true
++else
++	@echo "Running tests..."
++	cd build && make -j2 check VERBOSE=1
+ endif
+ 
+ override_dh_auto_clean:
