@@ -967,7 +967,7 @@ static char *get_fan_dir_by_model_name(struct i2c_client *client, char *ptr_mode
         ptr_fan = NULL;
     }
 
-    dev_dbg(&client->dev, "Model name is %s, get by read_word is (%s)\n", 
+    dev_dbg(&client->dev, "Model name is %s, get by read_word is (%s)\n",
             ptr_model+1, ptr_fan ? ptr_fan : "NULL");
     return ptr_fan;
 }
